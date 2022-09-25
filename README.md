@@ -2,7 +2,7 @@
 
 **https://dashboard.ngrok.com/**
 
-- 1 : Créez un compte **GitHub** si ce n'est pas fait.
+- 1 : Créez un compte **GitHub**.
 - 2 : Créez un compte **Ngrok**.
 - 3 : Copiez votre **Authtoken**.
 - 4 : Créez un **Repositories**.
