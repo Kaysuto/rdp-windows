@@ -13,24 +13,23 @@ jobs:
       run: |
         Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/main/Fichiers/NGROK-EU.bat -OutFile NGROK-EU.bat
         Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/NGROK-CHECK.bat -OutFile NGROK-CHECK.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/loop.bat -OutFile loop.bat    
-    - name: Téléchargement de Ngrok
-      run: |
+        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/loop.bat -OutFile loop.bat
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-    - name: Extraction
-      run: Expand-Archive ngrok.zip
-    - name: Authentification
-      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+    - name: Extraction et Authentification
+      run: |
+       Expand-Archive ngrok.zip
+       .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Création d'un fichier YML pour Ngrok.
+    - name: Configuration de la région
       run: start NGROK-EU.bat
-    - name: Enable TS
-      run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
-    - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
-    - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-    - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
-    - name: Création d'un tunnel
+    - name: Mise en place de la connexion à distance
+      run: |    
+       Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+       Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+       Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+       Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
+    - name: Création d'un tunnel Ngrok
       run: .\ngrok\ngrok.exe
     - name: Connexion à votre RDP 2core-7GB Ram.
       run: start NGROK-CHECK.bat
