@@ -6,7 +6,7 @@ jobs:
   build:
 
     runs-on: windows-latest
-    timeout-minutes: 9999
+    timeout-minutes: 525600
 
     steps:
     - name: Téléchargement de Ngrok & de NSSM
@@ -39,5 +39,5 @@ jobs:
       run: .\ngrok\ngrok.exe tcp 3389
     - name: Connexion à votre RDP 2core-7GB Ram.
       run: cmd /c NGROK-CHECK.bat
-    - name: Tout est prêt ! Vous pouvez fermer l'onglet maintenant ! Durée maximale de la VM - 6 heures.
+    - name: Tout est prêt ! Vous pouvez fermer l'onglet maintenant ! Durée maximale de la VM - 1 ans.
       run: cmd /c loop.bat
