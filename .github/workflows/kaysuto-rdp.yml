@@ -13,6 +13,7 @@ jobs:
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
         Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/main/Fichiers/NGROK-EU.bat -OutFile NGROK-EU.bat
+        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/main/Fichiers/NGROK-EU.bat -OutFile NGROK-CHECK.bat        
         Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/loop.bat -OutFile loop.bat
         Expand-Archive ngrok.zip
     - name: Mise en place de la connexion à distance.
