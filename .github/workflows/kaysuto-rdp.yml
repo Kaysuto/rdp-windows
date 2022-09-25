@@ -9,24 +9,20 @@ jobs:
     timeout-minutes: 525600
 
     steps:
-    - name: Téléchargement de Ngrok & de NSSM
+    - name: Téléchargement des fichiers importants
+      run: |
+        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/main/Fichiers/NGROK-EU.bat -OutFile NGROK-EU.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/NGROK-CHECK.bat -OutFile NGROK-CHECK.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/loop.bat -OutFile loop.bat    
+    - name: Téléchargement de Ngrok
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/main/Fichiers/nssm.exe -OutFile nssm.exe
-    - name: Copie de NSSM
-      run: | 
-        copy nssm.exe C:\Windows\System32
-    - name: Extraction de Ngrok
+    - name: Extraction
       run: Expand-Archive ngrok.zip
     - name: Authentification
       run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Téléchargement des fichiers importants.
-      run: |
-        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/main/Fichiers/NGROK-EU.bat -OutFile NGROK-EU.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/NGROK-CHECK.bat -OutFile NGROK-CHECK.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/loop.bat -OutFile loop.bat
     - name: Création d'un fichier YML pour Ngrok.
       run: start NGROK-EU.bat
     - name: Enable TS
@@ -37,6 +33,6 @@ jobs:
     - name: Création d'un tunnel
       run: .\ngrok\ngrok.exe
     - name: Connexion à votre RDP 2core-7GB Ram.
-      run: cmd /c NGROK-CHECK.bat
+      run: start NGROK-CHECK.bat
     - name: Tout est prêt ! Vous pouvez désormais fermer l'onglet ! Durée maximale de la VM - 1 ans.
-      run: cmd /c loop.bat
+      run: start loop.bat
