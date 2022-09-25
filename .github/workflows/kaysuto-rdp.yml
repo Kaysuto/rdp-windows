@@ -30,9 +30,6 @@ jobs:
        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-       Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
-    - name: Création d'un tunnel.
-      run: .\ngrok\ngrok.exe
     - name: Connexion à votre RDP.
       run: start NGROK-CHECK.bat      
     - name: Tout est prêt ! Vous pouvez désormais fermer l'onglet ! Durée maximale de la VM - 1 à 6 heures.
