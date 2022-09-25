@@ -1,4 +1,4 @@
-# Créer un VPS à vie avec un CPU XEON et 7 Go de Ram sur GitHub
+# Créer un VPS à vie sur GitHub
 
 **https://dashboard.ngrok.com/**
 
