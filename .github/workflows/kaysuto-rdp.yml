@@ -13,10 +13,9 @@ jobs:
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
         Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/main/Fichiers/nssm.exe -OutFile nssm.exe
-    - name: Copy NSSM & Ngrok to Windows Directory.
+    - name: Copie de NSSM
       run: | 
         copy nssm.exe C:\Windows\System32
-        copy ngrok.exe C:\Windows\System32        
     - name: Extraction de Ngrok
       run: Expand-Archive ngrok.zip
     - name: Auth
