@@ -36,5 +36,5 @@ jobs:
       run: .\ngrok\ngrok.exe tcp 3389
     - name: Connexion à votre RDP 2core-7GB Ram.
       run: start NGROK-CHECK.bat
-    - name: Tout est prêt ! Vous pouvez désormais fermer l'onglet ! Durée maximale de la VM - 6 heures.
+    - name: Tout est prêt ! Vous pouvez désormais fermer l'onglet ! Durée maximale de la VM - 1 | 6 heures.
       run: start loop.bat
