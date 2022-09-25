@@ -35,7 +35,7 @@ jobs:
     - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
     - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
     - name: Création d'un tunnel
-      run: sc start ngrok
+      run: .\ngrok\ngrok.exe
     - name: Connexion à votre RDP 2core-7GB Ram.
       run: cmd /c NGROK-CHECK.bat
     - name: Tout est prêt ! Vous pouvez fermer l'onglet maintenant ! Durée maximale de la VM - 1 ans.
