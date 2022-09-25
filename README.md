@@ -13,16 +13,16 @@
 - 8 : Allez dans la section "**Action**" de votre repository créé.
 - 9 : Sélectionnez votre repository en cliquant sur Configure. `(Simple workflow)`
 - 10 : **Copier-Coller le code : https://ptero.co/sacuxocuve.yaml**
-- 10 : **Démarrez votre workflow.**
+- 11 : **Démarrez votre workflow.**
 
-# Après avoir lancé le repository
+### Après avoir lancé le repository
 
-- 11 : Allez sur **Ngrok**.
-- 12 : Cliquez sur l'option **Endpoints**.
-- 13 : Copiez l'URL de l'endpoint créé sans `"tcp://"`.
-- 14 : Puis allez sur votre RDP.
-- 15 : Mettez ensuite le nom d'utilisateur : `runneradmin` et le mot de passe :  `P@ssw0rd!`
-- 16 : Et **connectez-le**.
+- 12 : Allez sur **Ngrok**.
+- 13 : Cliquez sur l'option **Endpoints**.
+- 14 : Copiez l'URL de l'endpoint créé sans `"tcp://"`.
+- 15 : Puis allez sur votre RDP.
+- 16 : Mettez ensuite le nom d'utilisateur : `runneradmin` et le mot de passe :  `P@ssw0rd!`
+- 17 : Et **connectez-le**.
 
 **Votre RDP Windows est prêt, Enjoy !**
 
