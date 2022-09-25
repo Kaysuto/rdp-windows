@@ -18,7 +18,7 @@ jobs:
         Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/nssm.exe -OutFile nssm.exe
         copy nssm.exe C:\Windows\System32
         Expand-Archive ngrok.zip
-    - name: Authentification de Ngrok.
+    - name: Authentification...
       run: |
        .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
