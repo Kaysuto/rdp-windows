@@ -16,11 +16,10 @@ jobs:
         Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/loop.bat -OutFile loop.bat
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
         Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/nssm.exe -OutFile nssm.exe
-    - name: Copie des fichiers NSSM dans le répertoire Windows.
-      run: copy nssm.exe C:\Windows\System32        
-    - name: Extraction et authentification de Ngrok.
+        copy nssm.exe C:\Windows\System32
+        Expand-Archive ngrok.zip
+    - name: Authentification de Ngrok.
       run: |
-       Expand-Archive ngrok.zip
        .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
@@ -32,7 +31,7 @@ jobs:
        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
        Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
-    - name: Connexion à votre RDP 2core-7GB Ram.
-      run: start NGROK-CHECK.bat
+       .\ngrok\ngrok.exe
+       start NGROK-CHECK.bat
     - name: Tout est prêt ! Vous pouvez désormais fermer l'onglet ! Durée maximale de la VM - 1 à 6 heures.
       run: start loop.bat
