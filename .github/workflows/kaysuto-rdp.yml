@@ -6,7 +6,7 @@ jobs:
   build:
 
     runs-on: windows-latest
-    timeout-minutes: 525600
+    timeout-minutes: 9999
 
     steps:
     - name: Téléchargement des fichiers importants
@@ -31,7 +31,7 @@ jobs:
        Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
     - name: Création d'un tunnel Ngrok
       run: .\ngrok\ngrok.exe
-    - name: Connexion à votre RDP 2core-7GB Ram.
+    - name: Connexion à votre RDP 2core-7GB Ram
       run: start NGROK-CHECK.bat
-    - name: Tout est prêt ! Vous pouvez désormais fermer l'onglet ! Durée maximale de la VM - 1 ans.
+    - name: Tout est prêt ! Vous pouvez désormais fermer l'onglet ! Durée maximale de la VM - 6 heures.
       run: start loop.bat
