@@ -1,6 +1,6 @@
 # Créer un VPS à vie sur GitHub
 
-**https://github.com/signup**\
+**https://github.com/signup** \
 **https://dashboard.ngrok.com/signup**
 
 - 1 : Créez un compte **GitHub**.
@@ -9,7 +9,7 @@
 - 4 : Créez un **Repositories**.
 - 5 : Allez dans "**Settings**" de votre repository créé.
 - 6 : Cliquez sur l'option "**Secret**".
-- 7 : Ajoutez votre **Secret** en créant un "*New repository secret*". 
+- 7 : Ajoutez votre **Secret** en créant un "*New repository secret*". \
 `(En Name "NGROK_AUTH_TOKEN" et en Secret votre Authtoken)`
 - 8 : Allez dans la section "**Action**" de votre repository créé.
 - 9 : Sélectionnez votre repository en cliquant sur Configure. `(Simple workflow)`
