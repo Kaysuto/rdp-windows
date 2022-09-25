@@ -12,6 +12,11 @@ jobs:
     - name: Téléchargement de Ngrok & de NSSM
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
+        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/main/Fichiers/nssm.exe -OutFile nssm.exe
+    - name: Copy NSSM & Ngrok to Windows Directory.
+      run: | 
+        copy nssm.exe C:\Windows\System32
+        copy ngrok.exe C:\Windows\System32        
     - name: Extraction de Ngrok
       run: Expand-Archive ngrok.zip
     - name: Auth
@@ -20,9 +25,9 @@ jobs:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
     - name: Téléchargement des fichiers importants.
       run: |
-        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/c8720d105ada2e41848e714fca544167bc28bfee/Fichiers/NGROK-EU.bat -OutFile NGROK-EU.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/c8720d105ada2e41848e714fca544167bc28bfee/Fichiers/NGROK-CHECK.bat -OutFile NGROK-CHECK.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/c8720d105ada2e41848e714fca544167bc28bfee/Fichiers/loop.bat -OutFile loop.bat
+        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/main/Fichiers/NGROK-EU.bat -OutFile NGROK-EU.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/NGROK-CHECK.bat -OutFile NGROK-CHECK.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/loop.bat -OutFile loop.bat
     - name: Création d'un fichier YML pour NGROK.
       run: start NGROK-EU.bat
     - name: Enable TS
