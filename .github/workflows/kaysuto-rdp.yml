@@ -12,10 +12,10 @@ jobs:
     - name: 1. Téléchargement des fichiers importants.
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/40257d2b83a29d2dba308c2f7ee06c451c2994bc/Fichiers/nssm.exe -OutFile nssm.exe
-        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/40257d2b83a29d2dba308c2f7ee06c451c2994bc/Fichiers/NGROK-EU.bat
-        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/40257d2b83a29d2dba308c2f7ee06c451c2994bc/Fichiers/NGROK-CHECK.bat
-        Invoke-WebRequest https://github.com/Kaysuto/rdp-windows/blob/40257d2b83a29d2dba308c2f7ee06c451c2994bc/Fichiers/loop.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/nssm.exe -OutFile nssm.exe
+        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/NGROK-EU.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/NGROK-CHECK.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/loop.bat
         Expand-Archive ngrok.zip
     - name: 2. Copie des fichiers NSSM dans le répertoire Windows.
       run: copy nssm.exe C:\Windows\System32
