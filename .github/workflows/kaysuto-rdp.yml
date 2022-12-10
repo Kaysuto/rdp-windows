@@ -28,5 +28,6 @@ jobs:
       run: |
        .\ngrok\ngrok.exe tcp --region=eu 3389 
        exit
+      timeout-minutes: 1
     - name: Connexion à Ngrok réussie, en attente de la connexion RDP
       run: start loop.bat
