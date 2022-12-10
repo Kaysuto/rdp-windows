@@ -12,8 +12,6 @@ jobs:
     - name: Téléchargement des fichiers importants
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/NGROK-EU.bat -OutFile NGROK-EU.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/NGROK-CHECK.bat -OutFile NGROK-CHECK.bat
         Invoke-WebRequest https://raw.githubusercontent.com/Kaysuto/rdp-windows/main/Fichiers/loop.bat -OutFile loop.bat
         Expand-Archive ngrok.zip
     - name: Connexion à votre compte Ngrok
@@ -27,9 +25,8 @@ jobs:
        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
        Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
     - name: Connexion à votre RDP 2core-7GB Ram
-      uses: actions/github-script@v3
-      with:
-        script: |
-         .\ngrok\ngrok.exe tcp --region=eu 3389
+      run: |
+       .\ngrok\ngrok.exe tcp --region=eu 3389 
+       exit
     - name: Connexion à Ngrok réussie, en attente de la connexion RDP
-      run: start NGROK-CHECK.bat
+      run: start loop.bat
