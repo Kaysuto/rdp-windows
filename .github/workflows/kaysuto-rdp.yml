@@ -23,8 +23,5 @@ jobs:
        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
        Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
-    - name: Connexion à votre RDP 2core-7GB Ram
-      run: |
-       Start-Process .\ngrok\ngrok.exe -ArgumentList "tcp --region=eu 3389" -NoNewWindow
     - name: Connexion à Ngrok réussie, en attente de la connexion RDP
-      run: start loop.bat
+      run: .\ngrok\ngrok.exe tcp --region=eu 3389
