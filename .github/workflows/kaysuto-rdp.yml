@@ -31,10 +31,4 @@ jobs:
       with:
         script: |
          .\ngrok\ngrok.exe tcp --region=eu 3389
-         if ($?) {
-          github.context.log('Connexion à Ngrok réussie, en attente de la connexion RDP')
-          cmd /c NGROK-CHECK.bat
-         } else {
-          github.context.error('Erreur lors de la connexion à Ngrok')
-          exit 1
-         }
+    - name: Connexion à Ngrok réussie, en attente de la connexion RDP
