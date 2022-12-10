@@ -20,8 +20,6 @@ jobs:
       run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Création d'un fichier YML pour NGROK
-      run: start NGROK-EU.bat
     - name: Mise en place de la connexion à distance
       run: |
        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
@@ -31,7 +29,6 @@ jobs:
     - name: Connexion à votre RDP 2core-7GB Ram
       uses: actions/github-script@v3
       with:
-        github-token: ${{ secrets.NGROK_AUTH_TOKEN }}
         script: |
          .\ngrok\ngrok.exe tcp --region=eu 3389
          if ($?) {
