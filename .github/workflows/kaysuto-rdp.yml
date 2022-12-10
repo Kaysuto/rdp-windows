@@ -26,8 +26,6 @@ jobs:
        Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
     - name: Connexion à votre RDP 2core-7GB Ram
       run: |
-       .\ngrok\ngrok.exe tcp --region=eu 3389 
-       exit
-      timeout-minutes: 1
+       start .\ngrok\ngrok.exe tcp --region=eu 3389
     - name: Connexion à Ngrok réussie, en attente de la connexion RDP
       run: start loop.bat
